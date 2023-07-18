@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Tests;
 
 public class Tests
@@ -54,6 +56,18 @@ public class Tests
             }
         }
         var testResult = new string(inputString);
+        Assert.Equal(testResult, expectedResult);
+    }
+    
+    [Theory]
+    [InlineData("the sky is blue", "blue is sky the")]
+    [InlineData("  hello world  ", "world hello")]
+    [InlineData("a good   example", "example good a")]
+    public void ReverseWordsInAString_151(string s, string expectedResult)
+    {
+        string[] words = s.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var testResult = string.Join(' ', words.Reverse());
+
         Assert.Equal(testResult, expectedResult);
     }
 }
